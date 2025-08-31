@@ -39,3 +39,12 @@
 
 # debug information files
 *.dwo
+
+# Libs
+CarApp/.venv/
+
+# Build output
+CarApp/build/
+
+# CMake stuff
+CMakeCache.txt

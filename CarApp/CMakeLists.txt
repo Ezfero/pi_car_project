@@ -3,23 +3,24 @@ cmake_minimum_required(VERSION 3.15)
 
 # Define the project name
 project(CarApp VERSION 1.0.0 LANGUAGES CXX)
+set(CMAKE_CXX_STANDARD 23)
 
 # --- CONAN INTEGRATION (C++ DEPENDENCIES) ---
 # Find Conan and configure a new install folder.
 # This ensures that Conan's generated files are separate from the build.
-find_package(Conan REQUIRED)
-conan_cmake_configure(
-    REQUIRES
-        catch2/3.4.0
-        # gRPC and Protobuf are necessary for inter-process communication
-        grpc/1.54.3
-        protobuf/3.21.12
-    GENERATORS
-        CMakeToolchain
-        CMakeDeps
-    BUILD
-        missing
-)
+# find_package(Conan REQUIRED)
+# conan_cmake_configure(
+#     REQUIRES
+#         # catch2/3.4.0
+#         # gRPC and Protobuf are necessary for inter-process communication
+#         grpc/1.54.3
+#         protobuf/3.21.12
+#     GENERATORS
+#         CMakeToolchain
+#         CMakeDeps
+#     BUILD
+#         missing
+# )
 
 # --- PROTOBUF AND GRPC INTEGRATION ---
 # Find Protobuf and gRPC on the system.

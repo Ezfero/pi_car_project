@@ -1,0 +1,10 @@
+[settings]
+arch=armv8
+build_type=Release
+compiler=gcc
+compiler.cppstd=gnu17
+compiler.libcxx=libstdc++11
+compiler.version=12
+os=Linux
+
+[conf]
