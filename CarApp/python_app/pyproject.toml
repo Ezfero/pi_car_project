@@ -6,6 +6,9 @@ authors = ["Your Name <you@example.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
+grpcio = "^1.54.0"
+grpcio-tools = "^1.54.0"
+protobuf = "^4.23.4"
 requests = "^2.26.0"
 
 [build-system]
