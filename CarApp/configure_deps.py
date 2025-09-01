@@ -2,6 +2,7 @@
 import subprocess
 import sys
 import os
+import platform
 
 VENV_COMMANDS = [
     ["{venv_python}", "-m", "pip", "install", "--upgrade", "pip"],
@@ -14,9 +15,20 @@ def run(command, sudo=False, env=None):
     print(f"Running: {' '.join(command)}")
     subprocess.run(command, check=True, env=env)
 
+def install_cmake():
+    system = platform.system()
+    if system == "Linux":
+        run(["apt-get", "update"], sudo=True)
+        run(["apt-get", "install", "-y", "cmake"], sudo=True)
+    elif system == "Darwin":
+        run(["brew", "update"])
+        run(["brew", "install", "cmake"])
+    else:
+        print(f"Unsupported OS: {system}")
+        sys.exit(1)
+
 def main():
-    run(["apt-get", "update"], sudo=True)
-    run(["apt-get", "install", "-y", "cmake"], sudo=True)
+    install_cmake()
 
     venv_dir = ".venv"
     venv_python = os.path.join(venv_dir, "bin", "python")

@@ -1,5 +1,6 @@
 [requires]
 grpc/1.50.1
+protobuf/3.21.12
 
 [generators]
 CMakeToolchain
