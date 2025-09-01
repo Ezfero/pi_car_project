@@ -12,12 +12,6 @@ def main():
     venv_bin_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '.venv', 'bin')
     conan_path = os.path.join(venv_bin_path, 'conan')
     cmake_path = "cmake"
-    # cmake_path = os.path.join(venv_bin_path, 'cmake')
-
-    # if not os.path.exists(conan_path) or not os.path.exists(cmake_path):
-    #     print("Error: Conan or CMake executable not found in virtual environment.")
-    #     print("Please run 'python3 setup_env.py' first to set up the environment.")
-    #     sys.exit(1)
         
     # Step 2: Create the build directory if it doesn't exist.
     build_dir = "build"
@@ -53,7 +47,6 @@ def main():
 
     # Step 4: Run the CMake build command.
     print("\n--- Running CMake build ---")
-    # os.chdir(build_dir)
     try:
         cmake_command = [cmake_path, ".", 
                          f"-DCMAKE_TOOLCHAIN_FILE={build_dir}/conan_toolchain.cmake",
