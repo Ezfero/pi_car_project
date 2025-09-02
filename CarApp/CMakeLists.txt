@@ -13,16 +13,10 @@ set(CMAKE_PREFIX_PATH "${CMAKE_PREFIX_PATH};${CMAKE_CURRENT_SOURCE_DIR}/build")
 find_package(protobuf REQUIRED)
 find_package(gRPC CONFIG REQUIRED)
 
-# Compile the .proto file into C++ and Python source code.
-# This creates a shared library that both applications will use.
-PROTOBUF_GENERATE_CPP(proto_sources proto_headers shared_protos/greeter.proto)
-add_library(shared_protos STATIC ${proto_sources} ${grpc_sources})
-target_include_directories(shared_protos PUBLIC "${CMAKE_CURRENT_BINARY_DIR}")
-target_link_libraries(shared_protos PUBLIC protobuf::protobuf gRPC::grpc++)
-
 # --- C++ SUB-PROJECT ---
 add_subdirectory(cpp_app)
-add_dependencies(cpp_app_executable shared_protos)
+add_subdirectory(apis)
+add_dependencies(cpp_app_executable apis)
 
 
 # --- PYTHON APPLICATION ---

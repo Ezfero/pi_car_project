@@ -3,7 +3,7 @@
 #include <string>
 
 #include <grpcpp/grpcpp.h>
-#include "greeter.grpc.pb.h" // Generated header from the .proto file
+#include "greeter.pb.h"
 
 using grpc::Channel;
 using grpc::ClientContext;
