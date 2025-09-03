@@ -3,8 +3,8 @@ import time
 from concurrent import futures
 
 # Import the generated gRPC files
-from ..shared_protos import greeter_pb2
-from ..shared_protos import greeter_pb2_grpc
+from apis.gen.py import greeter_pb2
+from apis.gen.py import greeter_pb2_grpc
 
 _ONE_DAY_IN_SECONDS = 60 * 60 * 24
 

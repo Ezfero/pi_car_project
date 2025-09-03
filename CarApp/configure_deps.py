@@ -7,6 +7,7 @@ import platform
 VENV_COMMANDS = [
     ["{venv_python}", "-m", "pip", "install", "--upgrade", "pip"],
     ["{venv_python}", "-m", "pip", "install", "conan"],
+    ["{venv_python}", "-m", "pip", "install", "grpcio", "grpcio-tools"],
 ]
 
 def run(command, sudo=False, env=None):

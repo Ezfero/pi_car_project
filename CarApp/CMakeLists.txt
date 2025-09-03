@@ -21,18 +21,17 @@ add_dependencies(cpp_app_executable apis)
 
 # --- PYTHON APPLICATION ---
 # Use CMake's ExternalProject to manage the Python app.
-# include(ExternalProject)
-# ExternalProject_Add(
-#     python_app_setup
-#     SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/python_app"
-#     CONFIGURE_COMMAND ""
-#     BUILD_COMMAND ""
-#     INSTALL_COMMAND ""
-#     STEP_TARGETS install_deps
-#     COMMAND
-#         ${CMAKE_COMMAND} -E chdir "${CMAKE_CURRENT_SOURCE_DIR}/python_app"
-#         poetry install
-#     # Ensure the python setup runs after the proto files are generated.
-#     DEPENDS
-#         "${CMAKE_CURRENT_BINARY_DIR}/greeter_pb2.py"
-# )
+include(ExternalProject)
+ExternalProject_Add(
+    python_app_setup
+    SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/python_app"
+    CONFIGURE_COMMAND ""
+    BUILD_COMMAND ""
+    INSTALL_COMMAND ""
+    STEP_TARGETS install_deps
+    COMMAND
+        ${CMAKE_COMMAND} -E chdir "${CMAKE_CURRENT_SOURCE_DIR}/python_app"
+        poetry install
+    # Ensure the python setup runs after the proto files are generated.
+    DEPENDS "apis"
+)
