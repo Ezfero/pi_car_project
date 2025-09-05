@@ -14,23 +14,23 @@ find_package(protobuf REQUIRED)
 find_package(gRPC CONFIG REQUIRED)
 
 # --- C++ SUB-PROJECT ---
-add_subdirectory(cpp_app)
+add_subdirectory(core)
 add_subdirectory(apis)
-add_dependencies(cpp_app_executable apis)
+add_dependencies(core_executable apis)
 
 
 # --- PYTHON APPLICATION ---
 # Use CMake's ExternalProject to manage the Python app.
 include(ExternalProject)
 ExternalProject_Add(
-    python_app_setup
-    SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/python_app"
+    platform_wrapper_setup
+    SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/platform_wrapper"
     CONFIGURE_COMMAND ""
     BUILD_COMMAND ""
     INSTALL_COMMAND ""
     STEP_TARGETS install_deps
     COMMAND
-        ${CMAKE_COMMAND} -E chdir "${CMAKE_CURRENT_SOURCE_DIR}/python_app"
+        ${CMAKE_COMMAND} -E chdir "${CMAKE_CURRENT_SOURCE_DIR}/platform_wrapper"
         poetry install
     # Ensure the python setup runs after the proto files are generated.
     DEPENDS "apis"
