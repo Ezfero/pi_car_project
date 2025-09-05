@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package helloworld;
+package car_ipc;
 
 // The greeter service definition.
 service Greeter {

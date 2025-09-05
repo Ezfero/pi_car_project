@@ -9,9 +9,9 @@
 using grpc::Channel;
 using grpc::ClientContext;
 using grpc::Status;
-using helloworld::Greeter;
-using helloworld::HelloReply;
-using helloworld::HelloRequest;
+using car_ipc::Greeter;
+using car_ipc::HelloReply;
+using car_ipc::HelloRequest;
 
 class GreeterClient {
 public:

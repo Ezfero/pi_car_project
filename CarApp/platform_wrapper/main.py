@@ -2,20 +2,19 @@ import grpc
 import time
 from concurrent import futures
 
-# Import the generated gRPC files
-from apis.gen.py import greeter_pb2, greeter_pb2_grpc
+from apis.gen.py import movement_pb2, movement_pb2_grpc
 
 
 _ONE_DAY_IN_SECONDS = 60 * 60 * 24
 
-class GreeterServicer(greeter_pb2_grpc.GreeterServicer):
+class GreeterServicer(movement_pb2_grpc.GreeterServicer):
     def SayHello(self, request, context):
         print(f"Server received: {request.name}")
-        return greeter_pb2.HelloReply(message=f"Hello, {request.name}!")
+        return movement_pb2.HelloReply(message=f"Hello, {request.name}!")
 
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
-    greeter_pb2_grpc.add_GreeterServicer_to_server(GreeterServicer(), server)
+    movement_pb2_grpc.add_GreeterServicer_to_server(GreeterServicer(), server)
     server.add_insecure_port('[::]:50051')
     print("gRPC server started on port 50051. Press Ctrl+C to stop.")
     server.start()
