@@ -70,6 +70,11 @@ foreach(proto ${PROTO_FILES})
     )
 endforeach()
 
+add_custom_target(patch_python_grpc ALL
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/patch_grpc.py ${python_output_dir}
+    DEPENDS ${PY_PROTO_SRCS}
+)
+
 add_custom_target(python_protos ALL
     DEPENDS ${PY_PROTO_SRCS}
 )
