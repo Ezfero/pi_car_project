@@ -3,8 +3,8 @@
 #include <string>
 
 #include <grpcpp/grpcpp.h>
-#include "greeter.pb.h"
-#include "greeter.grpc.pb.h"
+#include "movement.pb.h"
+#include "movement.grpc.pb.h"
 
 using grpc::Channel;
 using grpc::ClientContext;

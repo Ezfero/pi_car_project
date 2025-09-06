@@ -17,3 +17,26 @@ message HelloRequest {
 message HelloReply {
     string message = 1;
 }
+
+service MovementClient {
+    rpc MoveForward (MoveRequest) returns (MoveReply) {}
+    rpc MoveBackward (MoveRequest) returns (MoveReply) {}
+    rpc TurnLeft (TurnRequest) returns (TurnReply) {}
+    rpc TurnRight (TurnRequest) returns (TurnReply) {}
+}
+
+message MoveRequest {
+    double distance = 1; // in meters
+}
+
+message MoveReply {
+    string status = 1;
+}
+
+message TurnRequest {
+    double angle = 1; // in degrees
+}
+
+message TurnReply {
+    string status = 1;
+}
