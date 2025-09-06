@@ -1,0 +1,26 @@
+{
+    "configurations": [
+        {
+            "name": "Mac",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/CarApp/core/src",
+                "${workspaceFolder}/CarApp/apis/gen/cpp",
+                "~/.conan2/p/**/include"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/clang",
+            "cStandard": "c17",
+            "cppStandard": "c++23",
+            "intelliSenseMode": "macos-clang-arm64",
+            "browse": {
+                "path": [
+                    "${workspaceFolder}/**",
+                    "~/.conan2/p/**/include"
+                ],
+                "limitSymbolsToIncludedHeaders": true
+            }
+        }
+    ],
+    "version": 4
+}
