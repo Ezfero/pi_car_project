@@ -51,7 +51,10 @@ def main():
         cmake_command = [cmake_path, ".", 
                          f"-DCMAKE_TOOLCHAIN_FILE={build_dir}/conan_toolchain.cmake",
                          f"-DCMAKE_PREFIX_PATH={build_dir}",
-                         "-DCMAKE_BUILD_TYPE=Release"]
+                         "-DCMAKE_BUILD_TYPE=Release",
+                         "-DPython3_EXECUTABLE=${CMAKE_SOURCE_DIR}/.venv/bin/python3",
+                         "-G", "Ninja",
+                         ]
         subprocess.run(cmake_command, check=True, text=True)
         print("CMake configuration successful.")
     except subprocess.CalledProcessError as e:

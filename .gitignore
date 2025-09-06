@@ -54,6 +54,9 @@ CMakeFiles/
 Makefile
 *.cmake
 CMakeUserPresets.json
+build.ninja
+.ninja_log
+.ninja_deps
 
 #Random stuff
 .DS_Store

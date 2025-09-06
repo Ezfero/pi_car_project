@@ -1,4 +1,4 @@
-#include "ColtrolOrchestrator.h"
+module orchestration;
 
 namespace car_app::core {
 ColtrolOrchestrator::ColtrolOrchestrator() {

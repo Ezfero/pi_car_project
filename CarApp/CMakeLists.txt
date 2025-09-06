@@ -1,15 +1,33 @@
 # CMake's minimum required version
-cmake_minimum_required(VERSION 3.15)
+cmake_minimum_required(VERSION 4.1)
+
+if(NOT DEFINED CMAKE_C_COMPILER)
+    if(APPLE)
+        # Look for Homebrew LLVM on macOS
+        find_program(HOMEBREW_LLVM clang HINTS /opt/homebrew/opt/llvm/bin /usr/local/opt/llvm/bin)
+        if(HOMEBREW_LLVM)
+            message(STATUS "Using LLVM from Homebrew: ${HOMEBREW_LLVM}")
+            set(CMAKE_CXX_COMPILER "${HOMEBREW_LLVM}++" CACHE STRING "C++ compiler" FORCE)
+        endif()
+    elseif(UNIX)
+        # On Linux, try clang-21 or clang-22
+        find_program(CLANG_BIN clang-21 clang-22 clang)
+        if(CLANG_BIN)
+            message(STATUS "Using Clang detected on Linux: ${CLANG_BIN}")
+            set(CMAKE_CXX_COMPILER "${CLANG_BIN}++" CACHE STRING "C++ compiler" FORCE)
+        endif()
+    endif()
+endif()
 
 # Define the project name
 project(CarApp VERSION 1.0.0 LANGUAGES CXX)
+
 set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_PREFIX_PATH "${CMAKE_PREFIX_PATH};${CMAKE_CURRENT_SOURCE_DIR}/build")
 
 
 # --- PROTOBUF AND GRPC INTEGRATION ---
-# Find Protobuf and gRPC on the system.
-# This is required to find the necessary tools for compiling our .proto file.
 find_package(protobuf REQUIRED)
 find_package(gRPC CONFIG REQUIRED)
 
@@ -20,7 +38,6 @@ add_dependencies(core_executable apis)
 
 
 # --- PYTHON APPLICATION ---
-# Use CMake's ExternalProject to manage the Python app.
 include(ExternalProject)
 ExternalProject_Add(
     platform_wrapper_setup

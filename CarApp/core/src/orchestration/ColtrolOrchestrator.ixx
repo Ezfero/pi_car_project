@@ -1,8 +1,8 @@
-#pragma once
+export module orchestration;
 
 namespace car_app::core {
 
-class ColtrolOrchestrator {
+export class ColtrolOrchestrator {
 public:
     ColtrolOrchestrator();
 
