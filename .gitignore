@@ -45,6 +45,16 @@ CarApp/.venv/
 
 # Build output
 CarApp/build/
+gen/
 
 # CMake stuff
 CMakeCache.txt
+CMakeFiles/
+Makefile
+*.cmake
+CMakeUserPresets.json
+
+#Random stuff
+.DS_Store
+__pycache__
+platform_wrapper_setup-prefix/
