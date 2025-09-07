@@ -9,6 +9,7 @@ import orchestration;
 #include "movement.pb.h"
 #include "movement.grpc.pb.h"
 #include "movement/StdInputHandler.h"
+#include "dependency_injection/ServiceProvider.h"
 
 using grpc::Channel;
 using grpc::ClientContext;
@@ -47,18 +48,20 @@ private:
 
 int main(int argc, char** argv) {
     std::cout << "Starting CarApp " << std::endl;
-    ControlOrchestrator orchestrator;
-    std::thread orchestrator_thread([&orchestrator]() {
-        orchestrator.start();
+
+    ServiceProvider::instance()
+        .registerAs<IInputHandler>(std::make_shared<StdInputHandler>())
+        .registerAs<ControlOrchestrator>(std::make_shared<ControlOrchestrator>());
+    
+    std::thread orchestrator_thread([]() {
+        ServiceProvider::instance().get<ControlOrchestrator>()->start();
     });
 
-    StdInputHandler handler;
     const auto handlerCallback = [](const InputCommand& inputCommand) {
         std::cout << "You typed: " << (int) inputCommand << std::endl;
     };
 
-    handler.start(handlerCallback);
-
+    ServiceProvider::instance().get<IInputHandler>()->start(handlerCallback);
     orchestrator_thread.join();
 
     // std::string target_address = "localhost:50051";
