@@ -57,6 +57,7 @@ CMakeUserPresets.json
 build.ninja
 .ninja_log
 .ninja_deps
+compile_commands.json
 
 #Random stuff
 .DS_Store

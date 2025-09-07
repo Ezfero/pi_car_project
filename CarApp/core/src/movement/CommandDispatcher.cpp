@@ -6,7 +6,7 @@ using namespace car_ipc;
 
 CommandDispatcher::CommandDispatcher(std::unique_ptr<car_ipc::MovementClient::Stub> movementClient)
     : movementClient_(std::move(movementClient)) {}
-    
+
 CommandDispatcher::~CommandDispatcher() = default;
 
 void CommandDispatcher::forward(const int distance) const {
@@ -63,6 +63,10 @@ void CommandDispatcher::right(const int angle) const {
     if (!status.ok()) {
         // Handle error
     }
+}
+
+void CommandDispatcher::stop() const {
+    // TODO
 }
 
 }  // namespace car_app::core
