@@ -8,7 +8,7 @@ import orchestration;
 #include <grpcpp/grpcpp.h>
 #include "movement.pb.h"
 #include "movement.grpc.pb.h"
-#include "movement/StdInputHandler.h"
+#include "input/StdInputHandler.h"
 #include "dependency_injection/ServiceProvider.h"
 #include "movement/CommandDispatcher.h"
 
@@ -33,11 +33,7 @@ int main(int argc, char** argv) {
         ServiceProvider::instance().get<ControlOrchestrator>()->start();
     });
 
-    const auto handlerCallback = [](const InputCommand& inputCommand) {
-        std::cout << "You typed: " << (int) inputCommand << std::endl;
-    };
-
-    ServiceProvider::instance().get<IInputHandler>()->start(handlerCallback);
+    ServiceProvider::instance().get<IInputHandler>()->start();
     orchestrator_thread.join();
     
     std::cout << "Finishing CarApp " << std::endl;

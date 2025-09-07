@@ -9,8 +9,10 @@ public:
     StdInputHandler() = default;
     ~StdInputHandler() override = default;
 
-    void start(const InputCallback& callback) override;
+    void start() override;
     void stop() override;
+
+    virtual InputCommandQueue& getInputCommandQueue() override;
 
 private:
     const std::unordered_map<char, InputCommand> kCommandsMap = {
@@ -23,6 +25,7 @@ private:
     };
 
     bool running_;
+    InputCommandQueue commandQueue_;
 
     char nextChar() const;
 };

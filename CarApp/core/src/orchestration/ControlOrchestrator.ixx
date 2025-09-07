@@ -4,7 +4,7 @@ namespace car_app::core {
 
 export class ControlOrchestrator {
 public:
-    ControlOrchestrator();
+    ControlOrchestrator() = default;
 
     void start();
     void stop();

@@ -6,7 +6,7 @@
 
 namespace car_app::core {
 
-void StdInputHandler::start(const InputCallback& callback) {
+void StdInputHandler::start() {
     running_ = true;
     while(running_) {
         const char nextCommand = nextChar();
@@ -14,12 +14,16 @@ void StdInputHandler::start(const InputCallback& callback) {
             continue;
         }
         auto command = kCommandsMap.at(nextCommand);
-        callback(command);
+        commandQueue_.push(command);
     }
 }
 
 void StdInputHandler::stop() {
     running_ = false;
+}
+
+InputCommandQueue& StdInputHandler::getInputCommandQueue() {
+    return commandQueue_;
 }
 
 char StdInputHandler::nextChar() const {
