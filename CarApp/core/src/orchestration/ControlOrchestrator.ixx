@@ -2,9 +2,9 @@ export module orchestration;
 
 namespace car_app::core {
 
-export class ColtrolOrchestrator {
+export class ControlOrchestrator {
 public:
-    ColtrolOrchestrator();
+    ControlOrchestrator();
 
     void start();
     void stop();
