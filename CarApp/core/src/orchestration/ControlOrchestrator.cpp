@@ -18,7 +18,7 @@ void ControlOrchestrator::start() {
                 dispatcher->forward(1);
                 break;
             case InputCommand::BACKWARD:
-                dispatcher->backward(0);
+                dispatcher->backward(1);
                 break;
             case InputCommand::LEFT:
                 dispatcher->left(15);
