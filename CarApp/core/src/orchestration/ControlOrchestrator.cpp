@@ -15,10 +15,10 @@ void ControlOrchestrator::start() {
         auto dispatcher = ServiceProvider::instance().get<ICommandDispatcher>();
         switch (command) {
             case InputCommand::FORWARD:
-                dispatcher->forward(10);
+                dispatcher->forward(1);
                 break;
             case InputCommand::BACKWARD:
-                dispatcher->backward(10);
+                dispatcher->backward(0);
                 break;
             case InputCommand::LEFT:
                 dispatcher->left(15);
