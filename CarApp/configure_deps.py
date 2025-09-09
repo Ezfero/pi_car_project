@@ -31,7 +31,8 @@ def install_modules():
         run(["apt-get", "update"], sudo=True)
         run(["apt-get", "install", "-y", "cmake"], sudo=True)
         run(["apt-get", "install", "-y", "llvm", "clang"], sudo=True)
-        run(["apt-get", "install", "-y", "ninja"], sudo=True)
+        run(["apt-get", "install", "-y", "cmake", "ninja-build"], sudo=True)
+
     elif system == "Darwin":
         run(["brew", "update"])
         run(["brew", "install", "cmake"])
