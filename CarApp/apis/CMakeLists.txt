@@ -7,9 +7,11 @@ file(GLOB PROTO_FILES "${CMAKE_CURRENT_SOURCE_DIR}/*.proto")
 # C++ Protobuf / gRPC generation
 # ==============================
 
+set(gen_dir "${CMAKE_CURRENT_BINARY_DIR}/gen")
+
 foreach(proto ${PROTO_FILES})
     get_filename_component(proto_name ${proto} NAME_WE)
-    set(cpp_output_dir "${CMAKE_CURRENT_BINARY_DIR}/gen/cpp")
+    set(cpp_output_dir "${gen_dir}/cpp")
 
     set(proto_src "${cpp_output_dir}/${proto_name}.pb.cc")
     set(proto_hdr "${cpp_output_dir}/${proto_name}.pb.h")
@@ -44,7 +46,7 @@ target_link_libraries(apis PUBLIC protobuf::protobuf gRPC::grpc++)
 
 find_package(Python3 REQUIRED COMPONENTS Interpreter)
 
-set(python_output_dir "${CMAKE_CURRENT_BINARY_DIR}/gen/py")
+set(python_output_dir "${gen_dir}/py")
 
 foreach(proto ${PROTO_FILES})
     get_filename_component(proto_name ${proto} NAME_WE)
@@ -72,6 +74,10 @@ endforeach()
 
 add_custom_target(patch_python_grpc ALL
     COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/patch_grpc.py ${python_output_dir}
+    DEPENDS ${PY_PROTO_SRCS}
+)
+add_custom_target(gen_inits ALL
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/gen_inits.py ${gen_dir}
     DEPENDS ${PY_PROTO_SRCS}
 )
 
