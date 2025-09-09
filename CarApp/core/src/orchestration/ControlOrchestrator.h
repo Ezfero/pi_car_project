@@ -1,8 +1,8 @@
-export module orchestration;
+#pragma once
 
 namespace car_app::core {
 
-export class ControlOrchestrator {
+class ControlOrchestrator {
 public:
     ControlOrchestrator() = default;
 

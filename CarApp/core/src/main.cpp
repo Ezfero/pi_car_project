@@ -1,5 +1,3 @@
-import orchestration;
-
 #include <iostream>
 #include <memory>
 #include <string>
@@ -11,6 +9,7 @@ import orchestration;
 #include "input/StdInputHandler.h"
 #include "dependency_injection/ServiceProvider.h"
 #include "movement/CommandDispatcher.h"
+#include "orchestration/ControlOrchestrator.h"
 
 using grpc::Channel;
 using grpc::ClientContext;

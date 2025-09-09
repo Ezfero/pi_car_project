@@ -1,10 +1,7 @@
-module;
-
+#include "ControlOrchestrator.h"
 #include "dependency_injection/ServiceProvider.h"
 #include "input/IInputHandler.h"
 #include "movement/ICommandDispatcher.h"
-
-module orchestration;
 
 namespace car_app::core {
 

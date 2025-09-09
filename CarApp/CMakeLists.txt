@@ -1,5 +1,5 @@
 # CMake's minimum required version
-cmake_minimum_required(VERSION 4.1)
+cmake_minimum_required(VERSION 3.25)
 
 if(NOT DEFINED CMAKE_C_COMPILER)
     if(APPLE)
